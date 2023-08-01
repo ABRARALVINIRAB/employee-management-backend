@@ -2,7 +2,8 @@
   "name": "rsr-guyana-backend-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  
+  "engines": {">=16"},
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "start":"node dist/server.js",
