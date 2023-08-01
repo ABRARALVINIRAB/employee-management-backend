@@ -58,21 +58,31 @@
 
 
 
-import mongoose from 'mongoose';
+import mongoose, { ConnectOptions } from 'mongoose';
 import { app } from './app';
 
 const port: number = Number(process.env.PORT) || 5000;
 const dataBaseUrl: string = process.env.DATABASE_URL || "default_connection_string";
 
-console.log(dataBaseUrl);
+
+
+// Define custom connection options type
+interface CustomConnectOptions extends ConnectOptions {
+  useNewUrlParser: boolean;
+  useUnifiedTopology: boolean;
+  serverApi?: '1';
+}
 
 async function main() {
   try {
-    await mongoose.connect(dataBaseUrl, {
-     
-      
+    // Use custom connection options type
+    const options: CustomConnectOptions = {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
       // Add any other options specific to your MongoDB configuration
-    });
+    };
+
+    await mongoose.connect(dataBaseUrl, options);
     console.log('db connect successfully');
   } catch (err) {
     console.log('error occurred in connection', err);
