@@ -59,13 +59,16 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const app_1 = require("./app");
 const port = Number(process.env.PORT) || 5000;
 const dataBaseUrl = process.env.DATABASE_URL || "default_connection_string";
-console.log(dataBaseUrl);
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            yield mongoose_1.default.connect(dataBaseUrl, {
-            // Add any other options specific to your MongoDB configuration
-            });
+            // Use custom connection options type
+            const options = {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+                // Add any other options specific to your MongoDB configuration
+            };
+            yield mongoose_1.default.connect(dataBaseUrl, options);
             console.log('db connect successfully');
         }
         catch (err) {
