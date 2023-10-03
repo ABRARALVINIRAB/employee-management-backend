@@ -6,7 +6,7 @@ const dataBaseUrl: string = process.env.DATABASE_URL || "default_connection_stri
 async function main() {
   try {
     await mongoose.connect(dataBaseUrl as string)
-    console.log('🛢 database connected succcesfully')
+    console.log('🛢yes database connected succcesfully ')
     //listen
     
   } catch (err) {
